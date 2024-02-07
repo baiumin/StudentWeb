@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>新增数据</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
+</head>
+<body>
+<form action="/add" style="width: 400px; margin: 100px auto" method="post">
+    <div class="mb-3">
+        <label for="id" class="form-label">学号</label>
+        <input type="text" class="form-control" id="id" aria-describedby="emailHelp" name="id">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">姓名</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="english" class="form-label">性别</label>
+        <input type="text" class="form-control" id="sex" name="sex">
+    </div>
+    <div class="mb-3">
+        <label for="python" class="form-label">年龄</label>
+        <input type="text" class="form-control" id="age" name="age">
+    </div>
+    <button type="submit" class="btn btn-primary">添加</button>
+</form>
+</body>
+</html>
+

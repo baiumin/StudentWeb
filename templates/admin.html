@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息管理</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <ul class="nav flex-column " style="width: 120px; margin: 40px auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/admin">管理功能</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">可视化功能</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" >退出登录</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <table class="table" style="width: 900px; margin: 40px auto">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <form action="/search" class="row g-3" method="post">
+                            <div class="col-auto">
+                                <label class="visually-hidden">学号</label>
+                                <input type="text" class="form-control" name="id" placeholder="学号">
+                            </div>
+                            <div class="col-auto">
+                                <label class="visually-hidden">姓名</label>
+                                <input type="text" class="form-control" name="name" placeholder="姓名">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-success mb-3">查找</button>
+                            </div>
+                        </form>
+                    </th>
+                    <th scope="col">
+                        <form action="/add" class="row g-3">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-info mb-3">添加学生</button>
+                            </div>
+                        </form>
+                    </th>
+                    <th scope="col">
+                        <form action="/sort" class="row g-3">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-info mb-3">排序</button>
+                            </div>
+                        </form>
+                    </th>
+                    <th scope="col">
+                        <form action="/admin" class="row g-3">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-info mb-3">返回</button>
+                            </div>
+                        </form>
+                    </th>
+                </tr>
+                </thead>
+                <tr>
+                    <td colspan="4">
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="width: 900px; margin: 0 auto">
+                                <thead>
+                                <tr>
+                                    <th scope="col">学号</th>
+                                    <th scope="col">姓名</th>
+                                    <th scope="col">性别</th>
+                                    <th scope="col">年龄</th>
+                                    <th scope="col">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {#
+            需要将 Python 对象的数据显示到浏览器上， 模板语法
+            jinja2(flask) numjucks(javascript) moka(django) vue
+
+            jinja2 可以直接在HTML中写 Python 的逻辑
+        #}
+                                {% for stu in student %}
+                                    <tr>
+                                        <th>{{ stu[0] }}</th>
+                                        <td>{{ stu[1] }}</td>
+                                        <td>{{ stu[2] }}</td>
+                                        <td>{{ stu[3] }}</td>
+                                        <td>
+                                            <form action="/delete/{{ stu[0] }}" method="get"
+                                                  style="display: inline-block;">
+                                                <button type="submit" class="btn btn-outline-danger btn-sm">删除
+                                                </button>
+                                            </form>
+                                            <form action="/modify/{{ stu[0] }}" method="get"
+                                                  style="display: inline-block;">
+                                                <button type="submit" class="btn btn-outline-warning btn-sm">修改
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
