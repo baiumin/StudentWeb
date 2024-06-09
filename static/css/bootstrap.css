@@ -6,14 +6,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 body {
-    background-image: url(../image/1.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: 0px -50px;
+    background: url("../image/1.jpg") no-repeat;
+    background-size: cover;
 }
 
 .table-responsive {
-  height: 400px;
+  height: 80%;
   overflow-y: scroll;
 }
 .table-responsive th {

@@ -1,8 +1,10 @@
 body {
-    background-image: url(../image/1.jpg);
+    /*background-image: url(../image/1.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: 0px -50px;
+    background-position: 0px -50px;*/
+    background: url("../image/1.jpg") no-repeat;
+    background-size: cover;
 }
 
 h1, .h1 {
@@ -13,10 +15,9 @@ h1, .h1 {
     background-color: #00000068;
     border-radius: 13px;
     text-align: center;
-    margin: 0px auto;
-    margin-top: 130px;
+    margin: 20% auto 0;
     width: 350px;
-    height: 300px;
+    height: 320px;
 }
 
 #login-box h1 {
