@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : min
+ Source Server         : baibai
  Source Server Type    : MySQL
- Source Server Version : 80026 (8.0.26)
+ Source Server Version : 80036
  Source Host           : localhost:3306
  Source Schema         : flask
 
  Target Server Type    : MySQL
- Target Server Version : 80026 (8.0.26)
+ Target Server Version : 80036
  File Encoding         : 65001
 
- Date: 24/06/2023 11:14:21
+ Date: 14/06/2024 17:07:50
 */
 
 SET NAMES utf8mb4;
@@ -23,27 +23,21 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student`  (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `sex` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `age` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of student
+-- Table structure for user
 -- ----------------------------
-INSERT INTO `student` VALUES (110, '沐翎', '女', 11);
-INSERT INTO `student` VALUES (1001, '张三', '女', 20);
-INSERT INTO `student` VALUES (1002, '李四', '女', 11);
-INSERT INTO `student` VALUES (1003, '王五', '男', 12);
-INSERT INTO `student` VALUES (1004, '孙六', '男', 23);
-INSERT INTO `student` VALUES (1005, '一', '男', 2);
-INSERT INTO `student` VALUES (1006, '二', '女', 50);
-INSERT INTO `student` VALUES (1007, '啊啊啊', '女', 50);
-INSERT INTO `student` VALUES (1008, '二', '女', 30);
-INSERT INTO `student` VALUES (1009, '呜呜呜', '男', 55);
-INSERT INTO `student` VALUES (1111, '啊啊啊', '女', 55);
-INSERT INTO `student` VALUES (10000, '啊啊啊', '男', 55);
-INSERT INTO `student` VALUES (10017, '啊啊啊', '男', 20);
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
