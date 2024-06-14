@@ -51,6 +51,11 @@ def user_register():
         if username == '' or password == '':
             js_code = "<script>alert('请输入账号密码！'); history.back();</script>"
             return js_code
+
+        user = get_user_by_username(username)
+        if user:
+            js_code = "<script>alert('用户已存在！'); history.back();</script>"
+            return js_code
         else:
             register_db(username, password)
             return redirect(url_for('user_login'))
@@ -63,6 +68,16 @@ def register_db(username, password):
     cursor.execute(sql, (username, password))
     db.commit()
     db.close()
+
+
+def get_user_by_username(username):
+    db = pymysql.connect(host=dbhost, user=dbuser, password=dbpass, database=dbname)
+    cursor = db.cursor(pymysql.cursors.DictCursor)
+    sql = "SELECT * FROM user WHERE username = %s"
+    cursor.execute(sql, (username,))
+    user = cursor.fetchone()
+    db.close()
+    return user
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -83,17 +98,6 @@ def user_login():
         else:
             js_code = "<script>alert('登录失败！'); history.back();</script>"
             return js_code
-
-
-def get_user_by_username(username):
-    db = pymysql.connect(host=dbhost, user=dbuser, password=dbpass, database=dbname)
-    cursor = db.cursor(pymysql.cursors.DictCursor)
-    try:
-        sql = "SELECT * FROM user WHERE username = %s"
-        cursor.execute(sql, (username,))
-        return cursor.fetchone()
-    finally:
-        db.close()
 
 
 @app.route('/admin', methods=['POST', 'GET'])  # 管理功能
