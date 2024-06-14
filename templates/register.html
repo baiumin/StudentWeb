@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/iconfont.css"/>
 </head>
 <body>
 
-<form action="/login" method="post">
+<form action="/register" method="post">
     <div id="login-box">
-        <h1>Login</h1>
+        <h1>Resister</h1>
         <div class="input-box">
             <i class="iconfont">&#xe609;</i>
             <input name="username" type="text" class="loginuser" value="" placeholder="UserName"/>
@@ -19,10 +19,9 @@
             <i class="iconfont">&#xe605;</i>
             <input name="password" type="password" class="loginpwd" value="" placeholder="UserPassword"/>
         </div>
-        <button type="submit" class="btn btn-primary">登录</button>
-        <a href="/register">去注册</a>
+        <button type="submit" class="btn btn-primary">注册</button>
+        <a href="/login">去登录</a>
     </div>
 </form>
 </body>
 </html>
-

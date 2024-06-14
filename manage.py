@@ -41,20 +41,59 @@ def index():
     return redirect(url_for('user_login'))
 
 
-@app.route('/login', methods=['GET', 'POST'])  # 登录功能
+@app.route('/register', methods=['GET', 'POST'])
+def user_register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    else:
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if username == '' or password == '':
+            js_code = "<script>alert('请输入账号密码！'); history.back();</script>"
+            return js_code
+        else:
+            register_db(username, password)
+            return redirect(url_for('user_login'))
+
+
+def register_db(username, password):
+    db = pymysql.connect(host=dbhost, user=dbuser, password=dbpass, database=dbname)
+    cursor = db.cursor()
+    sql = "INSERT INTO user (username, password) VALUES (%s, %s)"
+    cursor.execute(sql, (username, password))
+    db.commit()
+    db.close()
+
+
+@app.route('/login', methods=['GET', 'POST'])
 def user_login():
     if request.method == 'GET':
         return render_template('login.html')
-    username = request.form.get('username')
-    password = request.form.get('password')
-    if username == 'admin' and password == '123':
-        return redirect(url_for('admin'))
-    elif username == '' or password == '':
-        js_code = "<script>alert('请输入账号密码！'); history.back();</script>"
-        return js_code
     else:
-        js_code = "<script>alert('登陆失败！'); history.back();</script>"
-        return js_code
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if not username or not password:
+            js_code = "<script>alert('请输入账号密码！'); history.back();</script>"
+            return js_code
+
+        user = get_user_by_username(username)
+        if user and user['password'] == password:
+            return redirect(url_for('admin'))
+        else:
+            js_code = "<script>alert('登录失败！'); history.back();</script>"
+            return js_code
+
+
+def get_user_by_username(username):
+    db = pymysql.connect(host=dbhost, user=dbuser, password=dbpass, database=dbname)
+    cursor = db.cursor(pymysql.cursors.DictCursor)
+    try:
+        sql = "SELECT * FROM user WHERE username = %s"
+        cursor.execute(sql, (username,))
+        return cursor.fetchone()
+    finally:
+        db.close()
 
 
 @app.route('/admin', methods=['POST', 'GET'])  # 管理功能

@@ -58,3 +58,10 @@ h1, .h1 {
     color: #FFFFFF;
 }
 
+#login-box a {
+    font-size: 12px;
+    margin-left: 10px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
